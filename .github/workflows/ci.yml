@@ -24,7 +24,7 @@ on:
           description: 'Delay between retries in seconds'
           required: false
           default: '1'
-        test_suite:
+        TEST_SUITES:
           description: Test Suite
           type: choice
           required: true
@@ -38,11 +38,11 @@ jobs:
   automated-tests:
     runs-on: ubuntu-latest
     env:
-      TEST_ENV: ${{ inputs.test_env || 'tst' }}
-      BROWSERS: ${{ inputs.browsers || 'chromium' }}
-      TEST_SUITE: ${{ inputs.test_suite || 'smoke' }}
-      RETRIES: ${{ inputs.retries || '1' }}
-      RETRY_DELAY: ${{ inputs.retry_delay || '1' }}
+      TEST_ENV: ${{ inputs.TEST_ENV || 'tst' }}
+      BROWSERS: ${{ inputs.BROWSERS || 'chromium' }}
+      TEST_SUITE: ${{ inputs.TEST_SUITES || 'smoke' }}
+      RETRIES: ${{ inputs.RETRIES || '1' }}
+      RETRY_DELAY: ${{ inputs.RETRY_DELAY || '1' }}
 
     steps:
       - name: Checkout repository
