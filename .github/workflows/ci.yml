@@ -40,7 +40,7 @@ jobs:
     env:
       TEST_ENV: ${{ inputs.TEST_ENV || 'tst' }}
       BROWSERS: ${{ inputs.BROWSERS || 'chromium' }}
-      TEST_SUITE: ${{ inputs.TEST_SUITES || 'smoke' }}
+      TEST_SUITES: ${{ inputs.TEST_SUITES || 'smoke' }}
       RETRIES: ${{ inputs.RETRIES || '1' }}
       RETRY_DELAY: ${{ inputs.RETRY_DELAY || '1' }}
 
@@ -65,10 +65,10 @@ jobs:
 
       - name: Run tests
         run: |
-          if [ "$TEST_SUITE" = "all" ]; then
+          if [ "$TEST_SUITES" = "all" ]; then
             python -m pytest
           else
-            python -m pytest -m "$TEST_SUITE"
+            python -m pytest -m "$TEST_SUITES"
           fi
 
       - name: Upload test artifacts
