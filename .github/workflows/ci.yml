@@ -78,3 +78,11 @@ jobs:
           name: test-artifacts
           path: reports/
           if-no-files-found: ignore
+      
+      - name: Publish test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-report
+          path: reports/
+          retention-days: 14
