@@ -1,13 +1,13 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from framework_config import ENVIRONMENT
+from framework_config import TEST_ENV
 
 
 ENV_FILE = (
     Path(__file__).resolve().parent
     / "env"
-    / f".{ENVIRONMENT}.env"
+    / f".{TEST_ENV}.env"
 )
 
 
