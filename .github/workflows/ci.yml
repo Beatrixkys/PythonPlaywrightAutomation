@@ -40,7 +40,7 @@ jobs:
     env:
       TEST_ENV: ${{ inputs.TEST_ENV || 'tst' }}
       BROWSERS: ${{ inputs.BROWSERS || 'chromium' }}
-      TEST_SUITES: ${{ inputs.TEST_SUITES || 'smoke' }}
+      TEST_SUITES: ${{ inputs.TEST_SUITES || 'all' }}
       RETRIES: ${{ inputs.RETRIES || '1' }}
       RETRY_DELAY: ${{ inputs.RETRY_DELAY || '1' }}
 
