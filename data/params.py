@@ -78,7 +78,7 @@ LOAN_TEST_DATA = [
 
 TENURE_TEST_DATA = [
     "24 Months",
-    "36 Months",    
+    "36 Months",
     "48 Months",
     "60 Months",
     "72 Months",

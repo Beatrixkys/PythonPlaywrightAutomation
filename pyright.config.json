@@ -1,0 +1,11 @@
+{
+    "include": [
+        "pages",
+        "tests",
+        "utils",
+        "data"
+    ],
+    "typeCheckingMode": "strict",
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false
+}

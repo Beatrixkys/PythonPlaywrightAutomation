@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache
+*.pyc
+#run_tests.bat
+#/env/
+.vs
+/.vscode/
+/reports/
