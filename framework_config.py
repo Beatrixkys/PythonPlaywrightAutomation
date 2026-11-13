@@ -1,10 +1,11 @@
-
 import os
 
 # Environment
-ENVIRONMENT = os.getenv("TEST_ENV", "tst")
+TEST_ENV = os.getenv("TEST_ENV") or "tst"
+
 # Browsers
-BROWSERS = os.getenv("BROWSERS", "chromium").split(",")
+BROWSERS = (os.getenv("BROWSERS") or "chromium").split(",")
+
 # Retry configuration
-RETRIES = int(os.getenv("RETRIES", "1"))
-RETRY_DELAY = int(os.getenv("RETRY_DELAY", "1"))
+RETRIES = int(os.getenv("RETRIES") or "1")
+RETRY_DELAY = int(os.getenv("RETRY_DELAY") or "1")

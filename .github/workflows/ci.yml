@@ -35,13 +35,14 @@ on:
 
 
 jobs:
-  regression-tests:
+  automated-tests:
     runs-on: ubuntu-latest
     env:
-      TEST_ENV: ${{ inputs.test_env }}
-      BROWSERS: ${{ inputs.browsers }}
-      RETRIES: ${{ inputs.retries }}
-      RETRY_DELAY: ${{ inputs.retry_delay }}
+      TEST_ENV: ${{ inputs.test_env || 'tst' }}
+      BROWSERS: ${{ inputs.browsers || 'chromium' }}
+      TEST_SUITE: ${{ inputs.test_suite || 'smoke' }}
+      RETRIES: ${{ inputs.retries || '1' }}
+      RETRY_DELAY: ${{ inputs.retry_delay || '1' }}
 
     steps:
       - name: Checkout repository
