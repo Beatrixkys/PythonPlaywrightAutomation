@@ -19,3 +19,18 @@ if not BASE_URL:
 
 ANNUAL_INTEREST_RATE = 0.0788
 TIMEOUT = 500
+
+CIMB_BASE_URL = os.getenv("CIMB_BASE_URL")
+BASE_API_PLACEHOLDER = os.getenv("BASE_API_PLACEHOLDER")
+
+POSTS_ENDPOINT = "/posts"
+COMMENTS_ENDPOINT = "/comments"
+
+AUTH_HEADERS ={}
+
+POST_SCHEMA = {
+    "userId": int,
+    "id": int,
+    "title": str,
+    "body": str
+}

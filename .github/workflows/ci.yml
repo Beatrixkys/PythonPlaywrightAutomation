@@ -78,6 +78,7 @@ jobs:
           name: test-artifacts
           path: reports/
           if-no-files-found: ignore
+          retention-days: 14
       
       - name: Publish test reports
         if: always()
