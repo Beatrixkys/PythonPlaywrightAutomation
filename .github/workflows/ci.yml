@@ -95,6 +95,11 @@ jobs:
           name: playwright-test-report
           path: reports/
           retention-days: 14
+      
+      - name: Prepare ZAP report directory
+        run: |
+          mkdir -p reports/zap
+          chmod -R 777 reports/zap
 
       - name: Run OWASP ZAP Baseline Scan
         if: always()
