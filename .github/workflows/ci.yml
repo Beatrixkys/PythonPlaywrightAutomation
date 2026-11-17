@@ -32,6 +32,10 @@ on:
           options:
             - loan_calc
             - all
+        ZAP_SCAN:
+          description: 'Run OWASP ZAP scan (true/false)'
+          required: false
+          default: 'true'
 
 
 jobs:
@@ -43,6 +47,7 @@ jobs:
       TEST_SUITES: ${{ inputs.TEST_SUITES || 'all' }}
       RETRIES: ${{ inputs.RETRIES || '1' }}
       RETRY_DELAY: ${{ inputs.RETRY_DELAY || '1' }}
+      ZAP_SCAN: ${{ inputs.ZAP_SCAN || 'false' }}
 
     steps:
       - name: Checkout repository
@@ -86,4 +91,31 @@ jobs:
         with:
           name: playwright-test-report
           path: reports/
+          retention-days: 14
+
+      - name: Run OWASP ZAP Baseline Scan
+        if: always()
+        run: |
+          if [ -z "$TARGET_URL" ]; then
+            echo "TARGET_URL is not configured"
+            exit 1
+          fi
+
+          mkdir -p reports/zap
+
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE/reports/zap:/zap/wrk/:rw" \
+            ghcr.io/zaproxy/zaproxy:stable \
+            zap-baseline.py \
+            -t "$TARGET_URL" \
+            -r zap-report.html
+
+      # Upload all test and security reports
+      - name: Upload test and security reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-and-security-reports
+          path: reports/
+          if-no-files-found: ignore
           retention-days: 14
