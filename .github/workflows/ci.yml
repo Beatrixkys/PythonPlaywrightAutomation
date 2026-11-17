@@ -48,6 +48,9 @@ jobs:
       RETRIES: ${{ inputs.RETRIES || '1' }}
       RETRY_DELAY: ${{ inputs.RETRY_DELAY || '1' }}
       ZAP_SCAN: ${{ inputs.ZAP_SCAN || 'false' }}
+      BASE_URL: https://applynow.cimb.com.my/eform-app/loans/calculator?action=calc
+      BASE_API_PLACEHOLDER: https://jsonplaceholder.typicode.com
+
 
     steps:
       - name: Checkout repository
@@ -96,8 +99,8 @@ jobs:
       - name: Run OWASP ZAP Baseline Scan
         if: always()
         run: |
-          if [ -z "$TARGET_URL" ]; then
-            echo "TARGET_URL is not configured"
+          if [ -z "$BASE_API_PLACEHOLDER" ]; then
+            echo "BASE_API_PLACEHOLDER is not configured"
             exit 1
           fi
 
@@ -107,7 +110,7 @@ jobs:
             -v "$GITHUB_WORKSPACE/reports/zap:/zap/wrk/:rw" \
             ghcr.io/zaproxy/zaproxy:stable \
             zap-baseline.py \
-            -t "$TARGET_URL" \
+            -t "$BASE_API_PLACEHOLDER" \
             -r zap-report.html
 
       # Upload all test and security reports
